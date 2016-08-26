@@ -1,0 +1,1170 @@
+FORMAT: 1A
+HOST: https://api.inventorus.com/v1
+
+# Inventorus API
+
+Send items across Steam with just few calls. Be able to get information about your owned items even
+when Steam is down. Receive data from Steam nicely parsed. Everything metioned is possible with our simple API.
+
+## Warehouse [/warehouse]
+
+Warehouse represents storage for your items. We will take care of your items, there is no need to
+buy and manage your own bots. You can list through your items at any time for free.
+
+### List warehouse [GET /warehouse{?apiKey}]
+
+Returns all currently owned items. Exported items will not be listed.
+
++ Parameters
+    + apiKey (string, required) - Your api key
+
++ Response 200 (application/json)
+
+        {
+            "status": "success",
+            "response": {
+                "name": "WarehouseObtained",
+                "message": "Warehouse was succesfully obtained.",
+                "code": 200,
+                "data": {
+                    "items": [
+                        "d93518cc-9235-4828-8cdf-fd15bb19d3ce",
+                        "f01a64d1-212c-4431-98c9-66ae03625de4"
+                    ]
+                }
+            }
+        }
+
++ Response 400 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "InvalidRequest",
+                "message": "Request is missing required parameter.",
+                "code": 400
+            }
+        }
+
++ Response 403 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "InvalidApiKey",
+                "message": "Provided api key is invalid.",
+                "code": 403
+            }
+        }
+        
++ Response 500 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "Unexpected",
+                "message": "Some unexpected error has occured. Please try again later.",
+                "code": 500
+            }
+        }
+
+### Get item details [GET /warehouse/items/{id}{?apiKey}]
+
+Returns item details. You are allowed to look at items only connected to your account (including exported items).
+You can still look at exported items. Every item model contains special key called *attributes*,
+which are item's parsed data. Items from mainstream games have more attributes than others.
+
++ Parameters
+    + apiKey (string, required) - Your api key
+    + id (string, required) - ID of requested item
+
++ Response 200 (application/json)
+
+        {
+            "status": "success",
+            "response": {
+                "name": "ItemObtained",
+                "message": "Item details were succesfully obtained.",
+                "code": 200,
+                "data": {
+                    "item": {
+                        "actions": [
+                            {
+                                "name": "Inspect in Game...",
+                                "link": "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S%owner_steamid%A%assetid%D12009414397356767108"
+                            }
+                        ],
+                        "imageLarge": "-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpouL-iLhFfwOP3fzhF6cqJgJWZhsjgNqnDl2Jf18h0juDU-LP5iUazrl1vYmilINeQJw9qM1nYqVO7wbrphJe87p2cyXRm6yMr4neJzBLl0xpOcKUx0sdXNdIy",
+                        "instanceid": "188530139",
+                        "appid": "730",
+                        "marketable": true,
+                        "contextid": "2",
+                        "status": 0,
+                        "descriptions": [
+                            {
+                                "value": "Exterior: Field-Tested",
+                                "app_data": null,
+                                "type": "html"
+                            },
+                            {
+                                "value": " ",
+                                "app_data": null,
+                                "type": "html"
+                            },
+                            {
+                                "value": "The high-mag, fast-firing Negev is the perfect weapon for spraying a lot of rounds quickly, with a hefty price tag, high spread and frustrating recoil as trade-offs. It has been painted using a hydrographic with a terrain motif.\n\n<i>For someone who is supposed to be impartial, your daughter made an interesting choice for companionship - The Father and The Phoenix Part 1</i>",
+                                "app_data": null,
+                                "type": "html"
+                            },
+                            {
+                                "value": " ",
+                                "app_data": null,
+                                "type": "html"
+                            },
+                            {
+                                "color": "9da1a9",
+                                "value": "The Phoenix Collection",
+                                "app_data": {
+                                    "def_index": "65535",
+                                    "is_itemset_name": "1"
+                                },
+                                "type": "html"
+                            },
+                            {
+                                "value": " ",
+                                "app_data": null,
+                                "type": "html"
+                            }
+                        ],
+                        "id": "26dd0995-6c40-4384-9e09-d60e08296da1",
+                        "importedAt": 1471020814,
+                        "classid": "360460776",
+                        "tags": [
+                            {
+                                "category": "Type",
+                                "category_name": "Type",
+                                "name": "Machinegun",
+                                "internal_name": "CSGO_Type_Machinegun"
+                            },
+                            {
+                                "category": "Weapon",
+                                "category_name": "Weapon",
+                                "name": "Negev",
+                                "internal_name": "weapon_negev"
+                            },
+                            {
+                                "category": "ItemSet",
+                                "category_name": "Collection",
+                                "name": "The Phoenix Collection",
+                                "internal_name": "set_community_2"
+                            },
+                            {
+                                "category": "Quality",
+                                "category_name": "Category",
+                                "name": "Normal",
+                                "internal_name": "normal"
+                            },
+                            {
+                                "category": "Rarity",
+                                "category_name": "Quality",
+                                "color": "4b69ff",
+                                "name": "Mil-Spec Grade",
+                                "internal_name": "Rarity_Rare_Weapon"
+                            },
+                            {
+                                "category": "Exterior",
+                                "category_name": "Exterior",
+                                "name": "Field-Tested",
+                                "internal_name": "WearCategory2"
+                            }
+                        ],
+                        "image": "-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpouL-iLhFfwOP3fzhF6cqJgJWZhsjgNqnDl2Jf18h0juDU-MKkiwbg8hY9MWj1LYaXIwc3MwrY-Fnvl-fmjJHvu5-bm3s36Ckh5X7UgVXp1lPUQsbf",
+                        "name": "Negev | Terrain (Field-Tested)",
+                        "amount": "1",
+                        "attributes": {
+                            "weapon": "Negev",
+                            "quality": "Mil-Spec Grade",
+                            "collection": "The Phoenix Collection",
+                            "type": "Machinegun",
+                            "displayName": "Negev | Terrain",
+                            "wear": "Field-Tested"
+                        },
+                        "exportedAt": 1471120428,
+                        "type": "Mil-Spec Grade Machinegun"
+                    }
+                }
+            }
+        }
+
+
++ Response 400 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "InvalidRequest",
+                "message": "Request is missing required parameter.",
+                "code": 400
+            }
+        }
+
++ Response 403 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "InvalidApiKey",
+                "message": "Provided api key is invalid.",
+                "code": 403
+            }
+        }
+        
++ Response 403 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "AccessDenied",
+                "message": "Access to the resource is denied.",
+                "code": 403
+            }
+        }
+
++ Response 404 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "ItemNotFound",
+                "message": "Requested resource wasn't found or doesn't exist.",
+                "code": 404
+            }
+        }
+        
++ Response 500 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "Unexpected",
+                "message": "Some unexpected error has occured. Please try again later.",
+                "code": 500
+            }
+        }
+        
+## Import transactions [/warehouse/imports]
+
+Request items from anyone with non-private profile on Steam. Only two things you need to have are SteamID and 
+trade token of targeted Steam user. We will take care of everything and contact you throughout the whole process.
+
+### Import items [POST /warehouse/import{?apiKey}]
+
+Creates a new import and returns its *id*. Actual Steam trade offer will be sent as soon as possible.
+You can append your custom message to trade offer, though it's not necessary, because
+message will start with your unique business name anyway. Hook urls can provide you data about progress in rigth time.
+You don't have to use them, even though it can be very helpful and handy.
+
++ Parameters
+    + apiKey (string, required) - Your api key
+
++ Attributes
+    + steamid: `76561197960265729` (number, required) - SteamID64 of user's profile
+    + tradeToken: `x3CeVhts` (string, required) - Trade token of user
+    + message (string, optional) - Your custom trade offer message
+    + items: `[{"assetid": "6144820778","appid": 730,"contextid": 2}]` (array, required)
+        Array of user's items to import. Item is represented by object containing assetid (string), appid and contextid (number).
+    + successUrl (string, optional) 
+        Hook URL called after successfully completing whole process. Body of request is composed of Import model. 
+    + failUrl (string, optional)
+        Hook URL called after fatal fail. Body of request is composed of Import model.
+    + updateUrl (string, optional)
+        Hook URL called every time something changes (e.g. state of trade offer). Body of request is composed of Import model.
+
++ Request Create import transaction (application/json)
+
+        {
+            "steamid": "76561197960265729",
+            "tradeToken": "x3CeVhts",
+            "message": "Hello, look at this import offer!",
+            "items": [
+                {
+                    "assetid": "6144820778",
+                    "appid": 730,
+                    "contextid": 2
+                }
+            ],
+            "successUrl": "http://myapplication.com/import-hooks/success",
+            "failUrl": "http://myapplication.com/import-hooks/fail",
+            "updateUrl": "http://myapplication.com/import-hooks/update"
+        }
+
++ Response 201 (application/json)
+
+        {
+            "status": "success",
+            "response": {
+                "name": "ImportCreated",
+                "message": "Import was succesfully created.",
+                "code": 201,
+                "data": {
+                    "id": "e69c3df0-2da8-4a41-970e-bd4b4a864df5"
+                }
+            }
+        }
+        
++ Response 400 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "InvalidRequest",
+                "message": "Request is missing required parameter.",
+                "code": 400
+            }
+        }
+
++ Response 403 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "InvalidApiKey",
+                "message": "Provided api key is invalid.",
+                "code": 403
+            }
+        }
+        
++ Response 403 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "NotVerifiedAccount",
+                "message": "Developer with id XXX didn't verify account.",
+                "code": 403
+            }
+        }
+        
++ Response 403 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "DeveloperMustPay",
+                "message": "Developer first must pay all of the billed invoices.",
+                "code": 403
+            }
+        }
+        
++ Response 500 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "Unexpected",
+                "message": "Some unexpected error has occured. Please try again later.",
+                "code": 500
+            }
+        }
+
+### Get import transaction [GET /warehouse/imports/{id}{?apiKey}]
+
+Returns import transaction. You are only allowed to obtain your own import transactions.
+
++ Import status codes
+    + `0 - Created`
+    + `1 - Sent`
+    + `2 - In escrow`
+    + `3 - Completed`
+    + `4 - Error`
+    
++ Import error status codes
+    + `0 - Internal`
+    + `1 - Steam`
+    + `2 - Invalid trade token`
+    + `3 - Offer declined`
+    + `4 - Offer expired`
+
++ Parameters
+    + apiKey (string, required) - Your api key
+    + id (string, required) - ID of requested Import transaction
+
++ Response 200 (application/json)
+
+        {
+            "status": "success",
+            "response": {
+                "name": "ImportObtained",
+                "message": "Import was succesfully obtained.",
+                "code": 200,
+                "data": {
+                    "import": {
+                        "id": "e69c3df0-2da8-4a41-970e-bd4b4a864df5",
+                        "partnerId": "76561197960265729",
+                        "createdAt": 1471111307,
+                        "items": [
+                            "f01a64d1-212c-4431-98c9-66ae03625de4"
+                        ],
+                        "finishedAt": 1471111517,
+                        "status": 4,
+                        "errorStatus": 3
+                    }
+                }
+            }
+        }
+
++ Response 400 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "InvalidRequest",
+                "message": "Request is missing required parameter.",
+                "code": 400
+            }
+        }
+
++ Response 403 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "InvalidApiKey",
+                "message": "Provided api key is invalid.",
+                "code": 403
+            }
+        }
+
++ Response 404 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "ImportNotFound",
+                "message": "Import doesn't exist.",
+                "code": 404
+            }
+        }
+        
++ Response 500 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "Unexpected",
+                "message": "Some unexpected error has occured. Please try again later.",
+                "code": 500
+            }
+        }
+
+### Get import history [GET /warehouse/imports/history{?apiKey}]
+
+Returns ids of all import transactions you have created.
+
++ Parameters
+    + apiKey (string, required) - Your api key
+
++ Response 200 (application/json)
+
+        {
+            "status": "success",
+            "response": {
+                "name": "ImportHistoryObtained",
+                "message": "Import history was succesfully obtained.",
+                "code": 200,
+                "data": {
+                    "ids": [
+                        "e69c3df0-2da8-4a41-970e-bd4b4a864df5",
+                        "1a9b3958-fee3-40d7-ba3f-8fa258ee74c0"
+                    ]
+                }
+            }
+        }
+
++ Response 400 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "InvalidRequest",
+                "message": "Request is missing required parameter.",
+                "code": 400
+            }
+        }
+
++ Response 403 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "InvalidApiKey",
+                "message": "Provided api key is invalid.",
+                "code": 403
+            }
+        }
+        
++ Response 500 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "Unexpected",
+                "message": "Some unexpected error has occured. Please try again later.",
+                "code": 500
+            }
+        }
+
+## Export transactions [/warehouse/exports]
+
+Send your imported items to anyone with non-private Steam profile. You can send them to another user
+or even yourself. Only two things you need to have are SteamID and trade token. Export requests are very similar
+to import ones.
+
+### Export items [POST /warehouse/exports{?apiKey}]
+
+Creates a new export and returns its *id*. Whole process is almost identical to item import.
+
++ Parameters
+    + apiKey (string, required) - Your api key
+
++ Attributes
+    + steamid: `76561197960265729` (number, required) - SteamID64 of user's profile
+    + tradeToken: `x3CeVhts` (string, required) - Trade token of user
+    + message (string, optional) - Your custom trade offer message
+    + items: `26dd0995-6c40-4384-9e09-d60e08296da1` (array, required)
+        Array of your items to export. IDs of items are expected.
+    + successUrl (string, optional) 
+        Hook URL called after successfully completing whole process. Body of request is composed of export model. 
+    + failUrl (string, optional)
+        Hook URL called after fatal fail. Body of request is composed of export model.
+    + updateUrl (string, optional)
+        Hook URL called every time something changes (e.g. state of trade offer). Body of request is composed of export model.
+
++ Request Create export transaction (application/json)
+
+        {
+            "steamid": "76561197960265729",
+            "tradeToken": "x3CeVhts",
+            "message": "Hello, look at this export offer!",
+            "items": [
+                "26dd0995-6c40-4384-9e09-d60e08296da1"
+            ],
+            "successUrl": "http://myapplication.com/export-hooks/success",
+            "failUrl": "http://myapplication.com/export-hooks/fail",
+            "updateUrl": "http://myapplication.com/export-hooks/update"
+        }
+
++ Response 201 (application/json)
+
+        {
+            "status": "success",
+            "response": {
+                "name": "ExportCreated",
+                "message": "Export was succesfully created.",
+                "code": 201,
+                "data": {
+                    "id": "c5bac711-1958-4d69-ad8b-7c828aafde8f"
+                }
+            }
+        }
+
++ Response 400 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "InvalidRequest",
+                "message": "Request is missing required parameter.",
+                "code": 400
+            }
+        }
+
++ Response 403 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "InvalidApiKey",
+                "message": "Provided api key is invalid.",
+                "code": 403
+            }
+        }
+        
++ Response 403 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "NotVerifiedAccount",
+                "message": "Developer with id XXX didn't verify account.",
+                "code": 403
+            }
+        }
+        
++ Response 403 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "DeveloperMustPay",
+                "message": "Developer first must pay all of the billed invoices.",
+                "code": 403
+            }
+        }
+        
++ Response 500 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "Unexpected",
+                "message": "Some unexpected error has occured. Please try again later.",
+                "code": 500
+            }
+        }
+
+### Get export transaction [GET /warehouse/exports/{id}{?apiKey}]
+
+Returns export transaction. You are only allowed to obtain your own export transactions.
+
++ Export status codes
+    + `0 - Created`
+    + `1 - Sent`
+    + `2 - In escrow`
+    + `3 - Completed`
+    + `4 - Error`
+    
++ Export error status codes
+    + `0 - Internal`
+    + `1 - Steam`
+    + `2 - Invalid trade token`
+    + `3 - Offer declined`
+    + `4 - Offer expired`
+
++ Parameters
+    + apiKey (string, required) - Your api key
+    + id (string, required) - ID of requested Import transaction
+
++ Response 200 (application/json)
+
+        {
+            "status": "success",
+            "response": {
+                "name": "ExportObtained",
+                "message": "Export was succesfully obtained.",
+                "code": 200,
+                "data": {
+                    "export": {
+                        "id": "c5bac711-1958-4d69-ad8b-7c828aafde8f",
+                        "partnerId": "76561197960265729",
+                        "createdAt": 1471118156,
+                        "items": [
+                            "f01a64d1-212c-4431-98c9-66ae03625de4"
+                        ],
+                        "finishedAt": 1471120428,
+                        "status": 3,
+                        "errorStatus": 3
+                    }
+                }
+            }
+        }
+
++ Response 400 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "InvalidRequest",
+                "message": "Request is missing required parameter.",
+                "code": 400
+            }
+        }
+
++ Response 403 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "InvalidApiKey",
+                "message": "Provided api key is invalid.",
+                "code": 403
+            }
+        }
+
++ Response 404 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "ExportNotFound",
+                "message": "Export doesn't exist.",
+                "code": 404
+            }
+        }
+        
++ Response 500 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "Unexpected",
+                "message": "Some unexpected error has occured. Please try again later.",
+                "code": 500
+            }
+        }
+
+### Get export history [GET /warehouse/exports/history{?apiKey}]
+
+Returns ids of all export transactions you have created.
+
++ Parameters
+    + apiKey (string, required) - Your api key
+
++ Response 200 (application/json)
+
+        {
+            "status": "success",
+            "response": {
+                "name": "ExportHistoryObtained",
+                "message": "Export history was succesfully obtained.",
+                "code": 200,
+                "data": {
+                    "ids": [
+                        "c5bac711-1958-4d69-ad8b-7c828aafde8f",
+                        "a107c1bf-9e3a-4f45-a90a-d16e7f10363e"
+                    ]
+                }
+            }
+        }
+
++ Response 400 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "InvalidRequest",
+                "message": "Request is missing required parameter.",
+                "code": 400
+            }
+        }
+
++ Response 403 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "InvalidApiKey",
+                "message": "Provided api key is invalid.",
+                "code": 403
+            }
+        }
+        
++ Response 500 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "Unexpected",
+                "message": "Some unexpected error has occured. Please try again later.",
+                "code": 500
+            }
+        }
+
+## Steam [/steam]
+
+Receive data from Steam nicely parsed. Following endpoints strictly depend on Steam online status,
+so if Steam is down, error will occur.
+
+### Get user’s apps [GET /steam/apps/{steamid}{?apiKey,includeEmpty}]
+
+Returns applications with possibility of having items owned by targeted Steam user.
+
++ Parameters
+    + apiKey (string, required) - Your api key
+    + steamid (string, required) - SteamID64 of user's profile
+    + includeEmpty (boolean, optional)
+        Include user's apps currently containing no items inside his inventory. Default is set to false.
+
++ Response 200 (application/json)
+
+        {
+            "status": "success",
+            "response": {
+                "name": "AppsObtained",
+                "message": "Apps were succesfully obtained.",
+                "code": 200,
+                "data": {
+                    "apps": [
+                        {
+                            "appid": 730,
+                            "name": "Counter-Strike: Global Offensive",
+                            "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/730/69f7ebe2735c366c65c0b33dae00e12dc40edbe4.jpg",
+                            "link": "http://steamcommunity.com/app/730",
+                            "assetCount": 4,
+                            "inventoryLogo": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/730/3ab6e87a04994b900881f694284a75150e640536.png",
+                            "tradePermissions": "FULL",
+                            "contexts": [
+                                {
+                                    "id": "2",
+                                    "name": "Backpack",
+                                    "assetCount": 4
+                                }
+                            ]
+                        },
+                        {
+                            "appid": 753,
+                            "name": "Steam",
+                            "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/753/135dc1ac1cd9763dfc8ad52f4e880d2ac058a36c.jpg",
+                            "link": "http://steamcommunity.com/app/753",
+                            "assetCount": 29,
+                            "inventoryLogo": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/753/db8ca9e130b7b37685ab2229bf5a288aefc3f0fa.png",
+                            "tradePermissions": "FULL",
+                            "contexts": [
+                                {
+                                    "id": "1",
+                                    "name": "Gifts",
+                                    "assetCount": 0
+                                },
+                                {
+                                    "id": "3",
+                                    "name": "Coupons",
+                                    "assetCount": 0
+                                },
+                                {
+                                    "id": "6",
+                                    "name": "Community",
+                                    "assetCount": 29
+                                },
+                                {
+                                    "id": "7",
+                                    "name": "Item Rewards",
+                                    "assetCount": 0
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        }
+
++ Response 400 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "InvalidRequest",
+                "message": "Request is missing required parameter.",
+                "code": 400
+            }
+        }
+
++ Response 403 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "InvalidApiKey",
+                "message": "Provided api key is invalid.",
+                "code": 403
+            }
+        }
+        
++ Response 403 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "NotVerifiedAccount",
+                "message": "Developer with id XXX didn't verify account.",
+                "code": 403
+            }
+        }
+        
++ Response 403 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "DeveloperMustPay",
+                "message": "Developer first must pay all of the billed invoices.",
+                "code": 403
+            }
+        }
+
++ Response 404 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "UserNotFound",
+                "message": "User doesn't exist or has private profile.",
+                "code": 404
+            }
+        }
+        
++ Response 500 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "Unexpected",
+                "message": "Some unexpected error has occured. Please try again later.",
+                "code": 500
+            }
+        }
+        
++ Response 502 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "MalformedSteamResponse",
+                "message": "Steam services are unavailable. Try again later.",
+                "code": 502
+            }
+        }
+        
++ Response 503 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "SteamIsDown",
+                "message": "Steam services are unavailable. Try again later.",
+                "code": 503
+            }
+        }
+
+### Get user’s items [GET /steam/items/{steamid}/{appid}{?apiKey,contextids}]
+
+Returns user's items from specific application. 
+
++ Parameters
+    + apiKey (string, required) - Your api key
+    + steamid (string, required) - SteamID64 of user's profile
+    + appid (number, required) - ID of target application
+    + contextids (array, optional)
+        Array containing numbers representing context ids. By default all contexts are included,
+        but it's recommended to achieve better performance and lower costs.
+
++ Response 200 (application/json)
+
+        {
+            "status": "success",
+            "response": {
+                "name": "InventoryObtained",
+                "message": "Inventory was succesfully obtained.",
+                "code": 200,
+                "data": {
+                    "inventoryCount": 1,
+                    "currencyCount": 0,
+                    "inventory": [
+                        {
+                            "id": "3854006898",
+                            "classid": "469478321",
+                            "instanceid": "302028390",
+                            "amount": 1,
+                            "pos": 4,
+                            "assetid": "3854006898",
+                            "contextid": "2",
+                            "appid": "730",
+                            "icon_url": "-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgposbaqKAxf2-r3fzhQ49i_lb-HnvD8J_WEwjsBvpJ33bmS94qiigTm-xdkNTynctXGdAU8Y13S-QDsxerm0ZC0ot2Xnjdfx6Ff",
+                            "icon_url_large": "-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgposbaqKAxf2-r3fzhQ49i_lb-HnvD8J4Tdl3lW7Ysk3rmRo9vz3wTnqRVrMWnxJNKdJFNqNwuD_FK8w-vthsfuuJnAnXRrpGB8sgDE6mLi",
+                            "icon_drag_url": "",
+                            "name": "Glock-18 | Death Rattle",
+                            "market_hash_name": "Glock-18 | Death Rattle (Minimal Wear)",
+                            "market_name": "Glock-18 | Death Rattle (Minimal Wear)",
+                            "name_color": "D2D2D2",
+                            "background_color": "",
+                            "type": "Industrial Grade Pistol",
+                            "tradable": true,
+                            "marketable": true,
+                            "commodity": false,
+                            "market_tradable_restriction": 7,
+                            "descriptions": [
+                                {
+                                    "type": "html",
+                                    "value": "Exterior: Minimal Wear"
+                                },
+                                {
+                                    "type": "html",
+                                    "value": " "
+                                },
+                                {
+                                    "type": "html",
+                                    "value": "The Glock 18 is a serviceable first-round pistol that works best against unarmored opponents and is capable of firing three-round bursts. It has been painted with a snakeskin patterned hydrographic.\n\n<i>I know you don't believe in the cause...and when I expose you, Valeria will have your head - The Shield and The Serpent Part 1</i>"
+                                },
+                                {
+                                    "type": "html",
+                                    "value": " "
+                                },
+                                {
+                                    "type": "html",
+                                    "value": "The Bank Collection",
+                                    "color": "9da1a9",
+                                    "app_data": {
+                                        "def_index": "65535",
+                                        "is_itemset_name": 1
+                                    }
+                                },
+                                {
+                                    "type": "html",
+                                    "value": " "
+                                }
+                            ],
+                            "actions": [
+                                {
+                                    "name": "Inspect in Game...",
+                                    "link": "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S%owner_steamid%A%assetid%D2784950849377070350"
+                                }
+                            ],
+                            "market_actions": [
+                                {
+                                    "name": "Inspect in Game...",
+                                    "link": "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20M%listingid%A%assetid%D2784950849377070350"
+                                }
+                            ],
+                            "tags": [
+                                {
+                                    "internal_name": "CSGO_Type_Pistol",
+                                    "name": "Pistol",
+                                    "category": "Type",
+                                    "category_name": "Type"
+                                },
+                                {
+                                    "internal_name": "weapon_glock",
+                                    "name": "Glock-18",
+                                    "category": "Weapon",
+                                    "category_name": "Weapon"
+                                },
+                                {
+                                    "internal_name": "set_bank",
+                                    "name": "The Bank Collection",
+                                    "category": "ItemSet",
+                                    "category_name": "Collection"
+                                },
+                                {
+                                    "internal_name": "normal",
+                                    "name": "Normal",
+                                    "category": "Quality",
+                                    "category_name": "Category"
+                                },
+                                {
+                                    "internal_name": "Rarity_Uncommon_Weapon",
+                                    "name": "Industrial Grade",
+                                    "category": "Rarity",
+                                    "color": "5e98d9",
+                                    "category_name": "Quality"
+                                },
+                                {
+                                    "internal_name": "WearCategory1",
+                                    "name": "Minimal Wear",
+                                    "category": "Exterior",
+                                    "category_name": "Exterior"
+                                }
+                            ],
+                            "is_currency": false,
+                            "market_marketable_restriction": 0,
+                            "fraudwarnings": [],
+                            "attributes": {
+                                "type": "Pistol",
+                                "weapon": "Glock-18",
+                                "quality": "Industrial Grade",
+                                "collection": "The Bank Collection",
+                                "wear": "Minimal Wear",
+                                "displayName": "Glock-18 | Death Rattle"
+                            }
+                        }
+                    ],
+                    "currency": []
+                }
+            }
+        }
+
++ Response 400 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "InvalidRequest",
+                "message": "Request is missing required parameter.",
+                "code": 400
+            }
+        }
+
++ Response 403 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "InvalidApiKey",
+                "message": "Provided api key is invalid.",
+                "code": 403
+            }
+        }
+        
++ Response 403 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "NotVerifiedAccount",
+                "message": "Developer with id XXX didn't verify account.",
+                "code": 403
+            }
+        }
+        
++ Response 403 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "DeveloperMustPay",
+                "message": "Developer first must pay all of the billed invoices.",
+                "code": 403
+            }
+        }
+
++ Response 404 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "UserNotFound",
+                "message": "User doesn't exist or has private profile.",
+                "code": 404
+            }
+        }
+        
++ Response 500 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "Unexpected",
+                "message": "Some unexpected error has occured. Please try again later.",
+                "code": 500
+            }
+        }
+        
++ Response 502 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "MalformedSteamResponse",
+                "message": "Steam services are unavailable. Try again later.",
+                "code": 502
+            }
+        }
+        
++ Response 503 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "SteamIsDown",
+                "message": "Steam services are unavailable. Try again later.",
+                "code": 503
+            }
+        }

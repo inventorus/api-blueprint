@@ -56,7 +56,7 @@ Returns all currently owned items. Exported items will not be listed.
                 "code": 403
             }
         }
-        
+
 + Response 500 (application/json)
 
         {
@@ -218,7 +218,7 @@ which are item's parsed data. Items from mainstream games have more attributes t
                 "code": 403
             }
         }
-        
+
 + Response 403 (application/json)
 
         {
@@ -240,7 +240,7 @@ which are item's parsed data. Items from mainstream games have more attributes t
                 "code": 404
             }
         }
-        
+
 + Response 500 (application/json)
 
         {
@@ -251,10 +251,10 @@ which are item's parsed data. Items from mainstream games have more attributes t
                 "code": 500
             }
         }
-        
+
 ## Import transactions [/warehouse/imports]
 
-Request items from anyone with non-private profile on Steam. Only two things you need to have are SteamID and 
+Request items from anyone with non-private profile on Steam. Only two things you need to have are SteamID and
 trade token of targeted Steam user. We will take care of everything and contact you throughout the whole process.
 
 ### Import items [POST /warehouse/import{?apiKey}]
@@ -273,8 +273,8 @@ You don't have to use them, even though it can be very helpful and handy.
     + message (string, optional) - Your custom trade offer message
     + items: `[{"assetid": "6144820778","appid": 730,"contextid": 2}]` (array, required)
         Array of user's items to import. Item is represented by object containing assetid (string), appid and contextid (number).
-    + successUrl (string, optional) 
-        Hook URL called after successfully completing whole process. Body of request is composed of Import model. 
+    + successUrl (string, optional)
+        Hook URL called after successfully completing whole process. Body of request is composed of Import model.
     + failUrl (string, optional)
         Hook URL called after fatal fail. Body of request is composed of Import model.
     + updateUrl (string, optional)
@@ -311,7 +311,7 @@ You don't have to use them, even though it can be very helpful and handy.
                 }
             }
         }
-        
+
 + Response 400 (application/json)
 
         {
@@ -333,7 +333,7 @@ You don't have to use them, even though it can be very helpful and handy.
                 "code": 403
             }
         }
-        
+
 + Response 403 (application/json)
 
         {
@@ -344,7 +344,7 @@ You don't have to use them, even though it can be very helpful and handy.
                 "code": 403
             }
         }
-        
+
 + Response 403 (application/json)
 
         {
@@ -355,7 +355,7 @@ You don't have to use them, even though it can be very helpful and handy.
                 "code": 403
             }
         }
-        
+
 + Response 500 (application/json)
 
         {
@@ -377,7 +377,7 @@ Returns import transaction. You are only allowed to obtain your own import trans
     + `2 - In escrow`
     + `3 - Completed`
     + `4 - Error`
-    
+
 + Import error status codes
     + `0 - Internal`
     + `1 - Steam`
@@ -445,7 +445,92 @@ Returns import transaction. You are only allowed to obtain your own import trans
                 "code": 404
             }
         }
-        
+
++ Response 500 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "Unexpected",
+                "message": "Some unexpected error has occured. Please try again later.",
+                "code": 500
+            }
+        }
+
+### Cancel import transaction [POST /warehouse/imports/{id}/cancel{?apiKey}]
+
+Cancels import transaction in progress. Works only on created or sent offers.
+
++ Parameters
+    + apiKey (string, required) - Your api key
+    + id (string, required) - ID of requested Import transaction
+
++ Response 200 (application/json)
+
+        {
+            "status": "success",
+            "response": {
+                "name": "ImportCanceled",
+                "message": "Import was canceled.",
+                "code": 200
+            }
+        }
+
++ Response 400 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "InvalidRequest",
+                "message": "Request is missing required parameter.",
+                "code": 400
+            }
+        }
+
++ Response 403 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "InvalidApiKey",
+                "message": "Provided api key is invalid.",
+                "code": 403
+            }
+        }
+
++ Response 403 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "AccessDenied",
+                "message": "Access to the resource is denied.",
+                "code": 403
+            }
+        }
+
++ Response 404 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "ImportNotFound",
+                "message": "Import doesn't exist.",
+                "code": 404
+            }
+        }
+
++ Response 410 (application/json)
+
+        {
+            "status": "error",
+            "error": {
+                "name": "ImportLocked",
+                "message": "Import is no longer able to be canceled.",
+                "code": 410
+            }
+        }
+
 + Response 500 (application/json)
 
         {
@@ -502,7 +587,7 @@ Returns ids of all import transactions you have created.
                 "code": 403
             }
         }
-        
+
 + Response 500 (application/json)
 
         {
@@ -533,8 +618,8 @@ Creates a new export and returns its *id*. Whole process is almost identical to 
     + message (string, optional) - Your custom trade offer message
     + items: `26dd0995-6c40-4384-9e09-d60e08296da1` (array, required)
         Array of your items to export. IDs of items are expected.
-    + successUrl (string, optional) 
-        Hook URL called after successfully completing whole process. Body of request is composed of export model. 
+    + successUrl (string, optional)
+        Hook URL called after successfully completing whole process. Body of request is composed of export model.
     + failUrl (string, optional)
         Hook URL called after fatal fail. Body of request is composed of export model.
     + updateUrl (string, optional)
@@ -589,7 +674,7 @@ Creates a new export and returns its *id*. Whole process is almost identical to 
                 "code": 403
             }
         }
-        
+
 + Response 403 (application/json)
 
         {
@@ -600,7 +685,7 @@ Creates a new export and returns its *id*. Whole process is almost identical to 
                 "code": 403
             }
         }
-        
+
 + Response 403 (application/json)
 
         {
@@ -611,7 +696,7 @@ Creates a new export and returns its *id*. Whole process is almost identical to 
                 "code": 403
             }
         }
-        
+
 + Response 500 (application/json)
 
         {
@@ -633,7 +718,7 @@ Returns export transaction. You are only allowed to obtain your own export trans
     + `2 - In escrow`
     + `3 - Completed`
     + `4 - Error`
-    
+
 + Export error status codes
     + `0 - Internal`
     + `1 - Steam`
@@ -701,7 +786,7 @@ Returns export transaction. You are only allowed to obtain your own export trans
                 "code": 404
             }
         }
-        
+
 + Response 500 (application/json)
 
         {
@@ -758,7 +843,7 @@ Returns ids of all export transactions you have created.
                 "code": 403
             }
         }
-        
+
 + Response 500 (application/json)
 
         {
@@ -868,7 +953,7 @@ Returns applications with possibility of having items owned by targeted Steam us
                 "code": 403
             }
         }
-        
+
 + Response 403 (application/json)
 
         {
@@ -879,7 +964,7 @@ Returns applications with possibility of having items owned by targeted Steam us
                 "code": 403
             }
         }
-        
+
 + Response 403 (application/json)
 
         {
@@ -901,7 +986,7 @@ Returns applications with possibility of having items owned by targeted Steam us
                 "code": 404
             }
         }
-        
+
 + Response 500 (application/json)
 
         {
@@ -912,7 +997,7 @@ Returns applications with possibility of having items owned by targeted Steam us
                 "code": 500
             }
         }
-        
+
 + Response 502 (application/json)
 
         {
@@ -923,7 +1008,7 @@ Returns applications with possibility of having items owned by targeted Steam us
                 "code": 502
             }
         }
-        
+
 + Response 503 (application/json)
 
         {
@@ -937,7 +1022,7 @@ Returns applications with possibility of having items owned by targeted Steam us
 
 ### Get user’s items [GET /steam/items/{steamid}/{appid}{?apiKey,contextids}]
 
-Returns user's items from specific application. 
+Returns user's items from specific application.
 
 + Parameters
     + apiKey (string, required) - Your api key
@@ -1102,7 +1187,7 @@ Returns user's items from specific application.
                 "code": 403
             }
         }
-        
+
 + Response 403 (application/json)
 
         {
@@ -1113,7 +1198,7 @@ Returns user's items from specific application.
                 "code": 403
             }
         }
-        
+
 + Response 403 (application/json)
 
         {
@@ -1135,7 +1220,7 @@ Returns user's items from specific application.
                 "code": 404
             }
         }
-        
+
 + Response 500 (application/json)
 
         {
@@ -1146,7 +1231,7 @@ Returns user's items from specific application.
                 "code": 500
             }
         }
-        
+
 + Response 502 (application/json)
 
         {
@@ -1157,7 +1242,7 @@ Returns user's items from specific application.
                 "code": 502
             }
         }
-        
+
 + Response 503 (application/json)
 
         {

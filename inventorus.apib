@@ -384,6 +384,8 @@ Returns import transaction. You are only allowed to obtain your own import trans
     + `2 - Invalid trade token`
     + `3 - Offer declined`
     + `4 - Offer expired`
+    + `5 - Canceling`
+    + `6 - Canceled`
 
 + Parameters
     + apiKey (string, required) - Your api key
@@ -725,6 +727,8 @@ Returns export transaction. You are only allowed to obtain your own export trans
     + `2 - Invalid trade token`
     + `3 - Offer declined`
     + `4 - Offer expired`
+    + `5 - Canceling`
+    + `6 - Canceled`
 
 + Parameters
     + apiKey (string, required) - Your api key
@@ -1023,6 +1027,15 @@ Returns applications with possibility of having items owned by targeted Steam us
 ### Get user’s items [GET /steam/items/{steamid}/{appid}{?apiKey,contextids}]
 
 Returns user's items from specific application.
+
++ Steam inventory contexts
+    + `1 - Gifts`
+    + `3 - Coupons`
+    + `6 - Community`
+    + `7 - Item Rewards`
+
+Other applications regularly use only one context for all items, most games use context id 2.
+In case you want to fetch contexts from specific application, use /apps endpoint.
 
 + Parameters
     + apiKey (string, required) - Your api key
